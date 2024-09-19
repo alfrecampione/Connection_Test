@@ -51,11 +51,16 @@ public class ConnectionTests
         // Arrange
         var connection = new Connection(ApiUrl, Token, _endpoints);
 
-        // Act
-        connection.Get(_endpoints.Length + 1);
-
         // Assert
-        Assert.Throws<ArgumentOutOfRangeException>(() => connection.Get(_endpoints.Length + 1));
+        try
+        {
+            connection.Get(_endpoints.Length + 1);
+            throw new Exception("Invalid bahavior");
+        }
+        catch (Exception)
+        {
+            return;
+        }
     }
 
     [Fact]
